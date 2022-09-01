@@ -1,2 +1,2 @@
 #!/bin/bash
-id -ua
+id -u
