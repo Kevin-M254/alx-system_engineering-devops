@@ -1,0 +1,1 @@
+Attempting shell permissions
