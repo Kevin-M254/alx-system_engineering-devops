@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#This scripts configures an Ubuntu server to:
+# ***resolve localhost to 127.0.0.2
+# ***facebook to 8.8.8.8
+
+cp /etc/hosts ~/hosts.new
+echo "127.0.0.1		localhost" > ~/hosts.new
+cp -f ~/hosts.new /etc/hosts
