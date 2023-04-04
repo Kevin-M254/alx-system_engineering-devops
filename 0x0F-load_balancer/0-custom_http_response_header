@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Configure nginx server so that its HTTP response contains a custom header
+# The name of the custom header is X-served-By
+# The value of the custom header is the hostname the server is running on
+
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Configre firewall to allow request through port 80
+sudo ufw allow 'Nginx HTTP'
+
+sudo mkdir -p /var/www/html
+
+# Change permission to allow easy creation of files in this directory
+sudo chmod -R 755 /var/www
+
+# Create index page
+echo 'Hello World!' | sudo tee /var/www/html/index.html
+
+# redirect a specific endpoint
+string_for_replacement="server_name _;\n\tadd_header X-Served-By \$hostname;\n\trewrite ^\/redirect_me https:\/\/www.kolle.com permanent;"
+sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/site-enabled/default
+
+# create error page and add a redirect for error 404
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+string_for_replacement="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sudo sed -i "s/listen 80 default_server;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+
+# restart server
+sudo service nginx restart
