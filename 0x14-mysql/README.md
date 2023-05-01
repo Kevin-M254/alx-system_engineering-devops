@@ -1,1 +1,0 @@
-Installing and configuring MySQL
