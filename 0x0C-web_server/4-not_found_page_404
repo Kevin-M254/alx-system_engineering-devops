@@ -6,7 +6,7 @@ sudo apt-get install -y nginx
 
 # redirect a specific endpoint
 echo "Hello World!" | sudo tee /var/www/html/index.html
-string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.kolle.com permanent;"
+string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.moviequotes.com permanent;"
 sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/site-enabled/default
 
 # create error page and add a redirect for error 404
