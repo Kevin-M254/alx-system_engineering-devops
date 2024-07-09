@@ -16,8 +16,8 @@ frontend kevinm-frontend
 	default_backend kevinm-backend
 backend kevinm-backend
 	balance roundrobin
-	server 120033-web-01 52.86.112.73:80 check
-	server 120033-web-02 100.26.225.71:80 check
+	server 120033-web-01 3.94.213.158:80 check
+	server 120033-web-02 54.237.207.105:80 check
 "
 echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
 
