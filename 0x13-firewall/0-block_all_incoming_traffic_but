@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# configures firewall to block all incoming
+# configures a firewall to block all incoming
 # traffic except for ports 22 443 and 80
 apt-get install ufw
 sed -i 's/IPV6=.*/IPV6=yes/' /etc/default/ufw
